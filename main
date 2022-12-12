@@ -1,0 +1,52 @@
+# Import the necessary libraries
+import requests
+import json
+
+# Define a function to verify eligibility
+def verify_eligibility(member_id, policy_number):
+  # Set the API endpoint URL
+  url = "https://insurance-eligibility-api.com/verify"
+
+  # Set the request payload with the member ID and policy number
+  payload = {
+    "member_id": member_id,
+    "policy_number": policy_number
+  }
+
+  # Send the request to the API and get the response
+  response = requests.post(url, json=payload)
+
+  # Parse the JSON response
+  response_data = json.loads(response.text)
+
+  # Return the response data
+  return response_data
+
+# Define a function to verify claims
+def verify_claim(claim_id, member_id, policy_number):
+  # Set the API endpoint URL
+  url = "https://insurance-claims-api.com/verify"
+
+  # Set the request payload with the claim ID, member ID, and policy number
+  payload = {
+    "claim_id": claim_id,
+    "member_id": member_id,
+    "policy_number": policy_number
+  }
+
+  # Send the request to the API and get the response
+  response = requests.post(url, json=payload)
+
+  # Parse the JSON response
+  response_data = json.loads(response.text)
+
+  # Return the response data
+  return response_data
+
+# Example usage
+eligibility_response = verify_eligibility(12345, 67890)
+claims_response = verify_claim(101, 12345, 67890)
+
+# Print the response data
+print(eligibility_response)
+print(claims_response)
